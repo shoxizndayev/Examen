@@ -3,8 +3,8 @@ const PG = require('../../utils/postgres')
 class HomeworkModel extends PG {
    addHomework() {
     return this.fetch(`
-    insert into homeworks(title, user_id, group_id) values($1, 2$, 3$) returning *
-    `, title, user_id, group_id)
+    insert into homeworks(title, group_id) values($1, 3$) returning *
+    `, title, group_id)
    }
 
 }

@@ -1,3 +1,4 @@
+const jwt = require('../../utils/jwt')
 const model = require('./model')
 
 class UserController {
@@ -12,9 +13,9 @@ class UserController {
             }
 
             res.json({
-                message: "Autorized",
+                message: "Authorized",
                 access_token: jwt({id: user.id}),
-                role: user.role == 'student' ? 'student' : 'teacher'
+                role: user.role == 3 ? "student" : "teacher"
             })
            } catch(err) {
             console.log(err.massage)

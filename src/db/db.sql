@@ -20,9 +20,13 @@ create table users(
 
 insert into users(name, surname, username, password, phone_number, role) values('Farhod', 'Shoxizindayev', 'farhod', 8973618, 8973618, 'admin' );
 insert into users(name, surname, username, password, phone_number, course) values('Javohir', 'Gafurov', 'javohir', 8973142, 8973142, 'C++' );
-insert into users(name, surname, username, password, phone_number, course, role) values('Toshmat', 'Teshaboev', 'toshmat', 9999999, 9999999, 'C++', 'teacher');
+insert into users(name, surname, username, password, phone_number, course, role) values('Toshmat', 'Teshaboev', 'kimdircha', 9999999, 9999999, 'C++', 2);
 
 delete from users where id='7d7eae2e-c389-42fb-9da5-9eb2845a5c07';
+
+alter table users drop column role;
+
+alter table users add role int not null default 3;
 
 select * from users where role = 'teacher';
 
@@ -71,14 +75,10 @@ drop table if exists homeworks;
 create table homeworks(
     id uuid not null default uuid_generate_v4() primary key,
     title varchar(64) not null,
-    user_id uuid,
-    foreign key(user_id)
-    references users(id)
-    on delete cascade,
     group_id uuid,
     foreign key (group_id)
     references groups(id)
     on delete cascade
 );
 
-insert into homeworks(title, user_id, group_id) values('nimadr qilib kel', '577df491-5e2b-4534-99fe-5b38e79f4452', '8636e110-f4c9-4a44-84e6-76a924b6a54a');
+insert into homeworks(title, group_id) values('nimadr qilib kel', '8636e110-f4c9-4a44-84e6-76a924b6a54a');
