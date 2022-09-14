@@ -1,9 +1,6 @@
--- users (username, password, role, course, phone number, id--UUID)
--- course (id--UUID, name, description, price, duration)
--- homework (id--UUID, title, )
--- group (id--UUID, name, FK course, FK teacher. )
-
 create EXTENSION if not exists "uuid-ossp";
+
+-- User Table
 
 drop table if exists users;
 
@@ -15,21 +12,12 @@ create table users(
     password bigint not null,
     phone_number bigint not null,
     course varchar(64),
-    role varchar(32) not null default 'student'
+    role varchar(32) not null default 3
 );
 
-insert into users(name, surname, username, password, phone_number, role) values('Farhod', 'Shoxizindayev', 'farhod', 8973618, 8973618, 'admin' );
-insert into users(name, surname, username, password, phone_number, course) values('Javohir', 'Gafurov', 'javohir', 8973142, 8973142, 'C++' );
-insert into users(name, surname, username, password, phone_number, course, role) values('Toshmat', 'Teshaboev', 'kimdircha', 9999999, 9999999, 'C++', 2);
-
-delete from users where id='7d7eae2e-c389-42fb-9da5-9eb2845a5c07';
-
-alter table users drop column role;
-
-alter table users add role int not null default 3;
-
-select * from users where role = 'teacher';
-
+insert into users(name, surname, username, password, phone_number, role) values('Zokir', 'Berdiev', 'zokir', 8973636, 8973636, 'admin');
+insert into users(name, surname, username, password, phone_number, course) values('Javohir', 'Gafurov', 'javohir', 8973142, 8973142, 'C++');
+insert into users(name, surname, username, password, phone_number, course, role) values('Toshmat', 'Teshaboev', 'kimdircha', 9999999, 9999999, 'C++', 'teacher');
 
 
 -- COURSES TABLE
@@ -45,7 +33,7 @@ create table courses(
     duration varchar(32) not null
 );
 
-insert into courses(course_n    ame, description, price, duration) values('C++', 'juda zor kurs', 600000, '4-oy');
+insert into courses(course_name, description, price, duration) values('C++', 'C++ algoritmlarni ishlashni tez va mukammal organing', 600000, '4-oy');
 
 -- GROUPS TABLE
 
@@ -64,9 +52,8 @@ create table groups(
     on delete cascade
 );
 
-insert into groups(group_name, user_id, course_id) values('N1', '577df491-5e2b-4534-99fe-5b38e79f4452', '917cfdf7-8538-4079-b9f4-11e75024a3a9');
-
-delete from groups where id='d68fe68d-77a4-40e1-a1c7-12545cd4f38b';
+insert into groups(group_name, user_id, course_id) values('1-guruh', '35a18137-51a8-4c88-8b0a-3b7ade6a8817', '56401bca-2dd3-40bc-bf86-12e9f737139d');
+insert into groups(group_name, user_id, course_id) values('1-guruh', 'ea331933-b4ca-4e2f-93cd-6c188a764d97', '56401bca-2dd3-40bc-bf86-12e9f737139d');
 
 -- HOMEWORKS TABLE
 
@@ -81,4 +68,4 @@ create table homeworks(
     on delete cascade
 );
 
-insert into homeworks(title, group_id) values('nimadr qilib kel', '8636e110-f4c9-4a44-84e6-76a924b6a54a');
+insert into homeworks(title, group_id) values('Darsdagi algoritmlarni ishlab keling', 'e94a361b-1e59-4739-9c76-92432295feaa');

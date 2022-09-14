@@ -6,11 +6,31 @@ class UserModel extends PG {
     }
 
     getUsersStudents() {
-        return this.fetch(`select * from users where role = 3`)
+        return this.fetch(`select * from users where role = 'student'`)
     }
 
     getUsersTeachers() {
-        return this.fetch(`select * from users where role = 2`)
+        return this.fetch(`select * from users where role = 'teacher'`)
+    }
+
+    getTeacherGroups() {
+        return this.fetch(`
+        select u.name, u.surname, g.group_name 
+        from users as u
+        inner join groups as g
+        on u.id = g.user_id
+        where u.role = 'teacher';
+        `)
+    }
+
+    getStudentGroups() {
+        return this.fetch(`
+        select u.name, u.surname, g.group_name 
+        from users as u
+        inner join groups as g
+        on u.id = g.user_id
+        where u.role = 'student';
+        `)
     }
 
     newUser(name, surname, username, password, phone_number, course, role) {

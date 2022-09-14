@@ -7,13 +7,13 @@ class GroupsModel extends PG {
 
     getGroupHomework() {
         return this.fetch(`
-        select
-        g.group_name, g.id, json_agg(h.*) as homeworks
+        select g.group_name, h.title, u.name, u.surname
         from groups as g
-        inner join 
-            homeworks as h
-        on h.group_id = g.id
-        group by g.group_name, g.id;
+        inner join homeworks as h
+        on g.id = h.group_id
+        inner join users as u
+        on g.user_id = u.id
+        where u.role='student';
         `)
     }
 

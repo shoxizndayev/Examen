@@ -16,7 +16,7 @@ class CourseModel extends PG {
         `)
     }
 
-    addCourse() {
+    addCourse(course_name, description, price, duration) {
         return this.fetch(`
         insert into courses(course_name, description, price, duration) values($1, $2, $3, $4)
         `, course_name, description, price, duration)
