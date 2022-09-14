@@ -13,7 +13,7 @@ class GroupsModel extends PG {
         on g.id = h.group_id
         inner join users as u
         on g.user_id = u.id
-        where u.role='student';
+        where u.role='student'
         `)
     }
 
