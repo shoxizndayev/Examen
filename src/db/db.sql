@@ -69,3 +69,4 @@ create table homeworks(
 );
 
 insert into homeworks(title, group_id) values('Darsdagi algoritmlarni ishlab keling', 'e94a361b-1e59-4739-9c76-92432295feaa');
+insert into homeworks(title, group_id) values('Darsdagi algoritmlarni ishlab keling', 'f179d501-030d-4f8b-82bd-8693d884895f');
