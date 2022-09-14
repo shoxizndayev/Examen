@@ -8,4 +8,4 @@ app.use(express.json())
 app.use(cors())
 app.use(router)
 
-app.listen(process.PORT || 8080, console.log(8080))
+app.listen(process.PORT || 8080, () => console.log('yondi'))
